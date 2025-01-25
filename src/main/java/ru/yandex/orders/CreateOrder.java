@@ -6,13 +6,14 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
+import static ru.yandex.constant.constantForScooter.BASE_URL;
 
 public class CreateOrder {
 
     public static RequestSpecification requestSpec() {
         return given().log().all()
                 .contentType(ContentType.JSON)
-                .baseUri("https://qa-scooter.praktikum-services.ru/");
+                .baseUri(BASE_URL);
     }
 
     @Step("Создание заказа")

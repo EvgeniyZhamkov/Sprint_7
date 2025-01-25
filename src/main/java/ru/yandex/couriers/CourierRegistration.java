@@ -45,8 +45,15 @@ public class CourierRegistration {
                 .body("message", equalTo("Недостаточно данных для входа"));
     }
 
-    @Step("Проверка ответа сервера при запросе с несуществующими логином или паролем")
+    @Step("Проверка ответа сервера при запросе с несуществующими логином")
     public void loginCourierErrorAccountNotFound(ValidatableResponse response) {
+        response.assertThat()
+                .statusCode(404)
+                .body("message", equalTo("Учетная запись не найдена"));
+    }
+
+    @Step("Проверка ответа сервера при запросе с несуществующими паролем")
+    public void loginCourierErrorIncorrectPassword(ValidatableResponse response) {
         response.assertThat()
                 .statusCode(404)
                 .body("message", equalTo("Учетная запись не найдена"));

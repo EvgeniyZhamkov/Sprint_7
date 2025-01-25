@@ -73,6 +73,18 @@ public class LoginCourierTests {
         courierRegistration.loginCourierErrorAccountNotFound(responseLoginErrorMessage);
     }
 
+    @Test
+    @DisplayName("Логин курьера с неверным паролем, но верным логином")
+    @Description("Проверяем, что курьер не может войти в систему с верным логином, но неверным паролем")
+    public void courierLoginErrorIncorrectPassword() {
+        CourierAuthorization courierAuthorizationIncorrectPassword = new CourierAuthorization(
+                creatingCourier.getLogin(),
+                "incorrect_password"
+        );
+        ValidatableResponse responseLoginErrorMessage = courierActions.loginCourier(courierAuthorizationIncorrectPassword);
+        courierRegistration.loginCourierErrorIncorrectPassword(responseLoginErrorMessage);
+    }
+
     @After
     @Step("Удаление курьера")
     public void deleteCourier() {
